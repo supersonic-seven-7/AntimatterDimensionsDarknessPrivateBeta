@@ -31,7 +31,7 @@ export const ultimateChallenges = [
     id: 3,
     description: () =>
       `You are trapped in every Eternity Challenge AT THE SAME TIME.`,
-    goal: DC.E1E15,
+    goal: () => Decimal.max(Decimal.NUMBER_MAX_VALUE, player.records.thisReality.bestAMUC3),
     isQuickResettable: true,
     reward: {
       description:

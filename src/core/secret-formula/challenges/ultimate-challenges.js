@@ -34,8 +34,9 @@ export const ultimateChallenges = [
     goal: Decimal.NUMBER_MAX_VALUE,
     isQuickResettable: true,
     reward: {
-      description:
-        "Increase Tachyon Amplifier Power based on record Antimatter inside this challenge",
+      description: () =>
+        `Increase Tachyon Amplifier Power based on record Antimatter inside this challenge
+        (Currently: ${format(player.records.thisReality.bestAMUC3, 2, 2)})`,
       effect: () => Math.pow(Decimal.log10(player.records.thisReality.bestAMUC3) / Decimal.log10(Decimal.NUMBER_MAX_VALUE), 0.5) / 1000,
       formatEffect: value => `+${format(value, 2, 4)}`
     },

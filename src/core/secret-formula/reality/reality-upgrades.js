@@ -304,10 +304,10 @@ export const realityUpgrades = [
     name: "Cosmic Conglomerate",
     id: 21,
     cost: 100000,
-    requirement: () => `${formatPostBreak(player.records.thisReality.bestAMUC3)}/${formatPostBreak("1e1233")} record Antimatter
+    requirement: () => `${formatPostBreak(player.records.thisReality.bestAMUC3)}/${formatPostBreak("1e2466")} record Antimatter
       in THE ULTIMATE CHALLENGE III`,
     checkRequirement: () =>
-      player.records.thisReality.bestAMUC3.gte(1e1233),
+      player.records.thisReality.bestAMUC3.gte(1e2466),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     description: () => `Increase the power effect per Tachyon Amplifier by ${formatPercents(0.05)}`,
     effect: 1e5

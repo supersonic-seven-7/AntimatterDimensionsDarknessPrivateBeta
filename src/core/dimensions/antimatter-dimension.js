@@ -58,10 +58,11 @@ export function antimatterDimensionCommonMultiplier() {
 }
 
 export function getDimensionFinalMultiplierUncached(tier) {
+  let challMult = DC.D1;
   if (tier < 1 || tier > 8) throw new Error(`Invalid Antimatter Dimension tier ${tier}`);
-  if ((NormalChallenge(10).isRunning || UltimateChallenge(1).isRunning) && tier > 6) return DC.D1;
+  if ((NormalChallenge(10).isRunning || UltimateChallenge(1).isRunning) && tier > 6) challMult = DC.D1;
   if (EternityChallenge(11).isRunning || UltimateChallenge(3).isRunning) {
-    return Currency.infinityPower.value.pow(
+    challMult = Currency.infinityPower.value.pow(
       InfinityDimensions.powerConversionRate
     ).max(1).times(DimBoost.multiplierToNDTier(tier));
   }
@@ -70,6 +71,7 @@ export function getDimensionFinalMultiplierUncached(tier) {
 
   multiplier = applyNDMultipliers(multiplier, tier);
   multiplier = applyNDPowers(multiplier, tier);
+  multiplier = multiplier.times(challMult);
 
   const glyphDilationPowMultiplier = getAdjustedGlyphEffect("dilationpow");
   if (player.dilation.active || PelleStrikes.dilation.hasStrike) {

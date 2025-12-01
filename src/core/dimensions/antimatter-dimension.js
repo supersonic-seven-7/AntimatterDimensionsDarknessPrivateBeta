@@ -66,16 +66,19 @@ export function getDimensionFinalMultiplierUncached(tier) {
       InfinityDimensions.powerConversionRate
     ).max(1).times(DimBoost.multiplierToNDTier(tier));
   }
+  if (((NormalChallenge(10).isRunning || UltimateChallenge(1).isRunning) && tier > 6) ||
+    EternityChallenge(11).isRunning || UltimateChallenge(3).isRunning) {
+    const glyphDilationPowMultiplier = getAdjustedGlyphEffect("dilationpow");
+    if (player.dilation.active || PelleStrikes.dilation.hasStrike) {
+      challMult = dilatedValueOf(challMult.pow(glyphDilationPowMultiplier));
+    }
+    return challMult;
+  }
 
   let multiplier = DC.D1;
-
-  if (!(((NormalChallenge(10).isRunning || UltimateChallenge(1).isRunning) && tier > 6) ||
-    EternityChallenge(11).isRunning || UltimateChallenge(3).isRunning)) {
-    multiplier = applyNDMultipliers(multiplier, tier);
-    multiplier = applyNDPowers(multiplier, tier);
-  }
   
-  multiplier = multiplier.times(challMult);
+  multiplier = applyNDMultipliers(multiplier, tier);
+  multiplier = applyNDPowers(multiplier, tier);
 
   const glyphDilationPowMultiplier = getAdjustedGlyphEffect("dilationpow");
   if (player.dilation.active || PelleStrikes.dilation.hasStrike) {

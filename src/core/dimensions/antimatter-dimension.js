@@ -69,8 +69,12 @@ export function getDimensionFinalMultiplierUncached(tier) {
 
   let multiplier = DC.D1;
 
-  multiplier = applyNDMultipliers(multiplier, tier);
-  multiplier = applyNDPowers(multiplier, tier);
+  if (!(((NormalChallenge(10).isRunning || UltimateChallenge(1).isRunning) && tier > 6) ||
+    EternityChallenge(11).isRunning || UltimateChallenge(3).isRunning)) {
+    multiplier = applyNDMultipliers(multiplier, tier);
+    multiplier = applyNDPowers(multiplier, tier);
+  }
+  
   multiplier = multiplier.times(challMult);
 
   const glyphDilationPowMultiplier = getAdjustedGlyphEffect("dilationpow");

@@ -87,7 +87,7 @@ export const dilationUpgrades = {
   doubleGalaxies: {
     id: 4,
     cost: 5e6,
-    description: () => `Gain twice as many Tachyon Amplifiers, up to ${formatInt(500)} base Amplifiers`,
+    description: () => `Gain twice as many Tachyon Amplifiers, up to ${formatInt(50)} base Amplifiers`,
     effect: 2
   },
   tdMultReplicanti: {
